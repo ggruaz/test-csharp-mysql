@@ -14,7 +14,8 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         //variable de connection à la base mySQL
-        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=test; uid=root; pwd=root;");
+        MySqlConnection mySqlConnectionSrv = new MySqlConnection(@"server=localhost; uid=root; pwd=root;");
+        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=ggz; uid=root; pwd=root;");
 
         public Form1()
         {
@@ -24,12 +25,20 @@ namespace WindowsFormsApp1
         private void btnStart_Click(object sender, EventArgs e)
         {
             //déclarations des commandes
-            MySqlCommand select = new MySqlCommand("SELECT * FROM test WHERE id=1", mySqlConnection);
-            MySqlCommand insert = new MySqlCommand("INSERT INTO test (id, password) values (1, '.Etml-')", mySqlConnection);
-            MySqlCommand create = new MySqlCommand("CREATE TABLE test(id int, password text)", mySqlConnection);
-            MySqlCommand update = new MySqlCommand("UPDATE test SET password='.Etml-44' WHERE id=1", mySqlConnection);
+            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS  ggz", mySqlConnection);
+            MySqlCommand select = new MySqlCommand("SELECT * FROM tableggz WHERE id=1", mySqlConnection);
+            MySqlCommand insert = new MySqlCommand("INSERT INTO tableggz (id, password) values (1, '.Etml-')", mySqlConnection);
+            MySqlCommand create = new MySqlCommand("CREATE TABLE tableggz(id int, password text)", mySqlConnection);
+            MySqlCommand update = new MySqlCommand("UPDATE tableggz SET password='.Etml-44' WHERE id=1", mySqlConnection);
 
-            //se connecte à la base de donnée
+            //se connecte au serveur
+            mySqlConnectionSrv.Open();
+
+            //crée la db selon la commande createdb
+            createdb.ExecuteNonQuery();
+            mySqlConnectionSrv.Close();
+
+            // se connecte à la bd
             mySqlConnection.Open();
 
             //crée les tables selon la commande create
