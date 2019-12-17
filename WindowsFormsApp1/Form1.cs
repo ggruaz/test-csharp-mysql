@@ -25,10 +25,10 @@ namespace WindowsFormsApp1
         private void btnStart_Click(object sender, EventArgs e)
         {
             //déclarations des commandes
-            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS  ggz", mySqlConnection);
+            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS ggz", mySqlConnectionSrv);
             MySqlCommand select = new MySqlCommand("SELECT * FROM tableggz WHERE id=1", mySqlConnection);
             MySqlCommand insert = new MySqlCommand("INSERT INTO tableggz (id, password) values (1, '.Etml-')", mySqlConnection);
-            MySqlCommand create = new MySqlCommand("CREATE TABLE tableggz(id int, password text)", mySqlConnection);
+            MySqlCommand create = new MySqlCommand("CREATE TABLE IF NOT EXISTS tableggz(id int, password text)", mySqlConnection);
             MySqlCommand update = new MySqlCommand("UPDATE tableggz SET password='.Etml-44' WHERE id=1", mySqlConnection);
 
             //se connecte au serveur
@@ -53,12 +53,14 @@ namespace WindowsFormsApp1
             //Met dans la variable reader le contenu de la requete select
             MySqlDataReader reader = select.ExecuteReader();
 
-            //passe à travers les donnee de la requete (equivalent d'un fetch en php)
+             //passe à travers les donnee de la requete (equivalent d'un fetch en php)
             while (reader.Read())
             {
                 //met à jours l'affichage
                 lblQuery.Text = "Contenu de la requête: " + Convert.ToString(reader["password"]);
             }
+
+            mySqlConnection.Close();
         }
     }
 }
