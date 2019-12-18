@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 /*
- Auteur: Raphaël Vögeli 
+ Auteur: Raphaël Vögeli
  Date: 10.01.2018
  Description: 
  Ce programme se connecte dans une base de donnée locale il demande qu'un base de donnée "test" aie été crée au préalable
