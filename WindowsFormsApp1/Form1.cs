@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
  Auteur: Raphaël Vögeli
  Date: 10.01.2018
  Description: 
- Ce programme se connecte dans une base de donnée locale il demande qu'un base de donnée "test" aie été crée au préalable
+ Ce programme se connecte dans une base de donnée locale il demande qu'une base de donnée "test" aie été crée au préalable
  Le programme créer un table ajoute des nouvelles information puis les met à joue et les affiche dans le label prévu à cet effet  
 */
 
