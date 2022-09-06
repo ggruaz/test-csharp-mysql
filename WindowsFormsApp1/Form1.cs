@@ -14,8 +14,8 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         //variable de connection à la base mySQL
-        MySqlConnection mySqlConnectionSrv = new MySqlConnection(@"server=localhost; uidTableroot; pwd=root;");
-        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=db_test; uidTableroot; pwd=root;");
+        MySqlConnection mySqlConnectionSrv = new MySqlConnection(@"server=localhost; user=root; pwd=root;");
+        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=db_test; user=root; pwd=root;");
 
         public Form1()
         {
