@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     {
         //variable de connection à la base mySQL
         MySqlConnection mySqlConnectionSrv = new MySqlConnection(@"server=localhost; uid=root; pwd=root;");
-        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=ggz; uid=root; pwd=root;");
+        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=db_test; uid=root; pwd=root;");
 
         public Form1()
         {
@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
         private void btnStart_Click(object sender, EventArgs e)
         {
             //déclarations des commandes
-            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS ggz", mySqlConnectionSrv);
+            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS db_test", mySqlConnectionSrv);
             MySqlCommand select = new MySqlCommand("SELECT * FROM tableggz WHERE id=1", mySqlConnection);
             MySqlCommand insert = new MySqlCommand("INSERT INTO tableggz (id, password) values (1, '.Etml-')", mySqlConnection);
             MySqlCommand create = new MySqlCommand("CREATE TABLE IF NOT EXISTS tableggz(id int, password text)", mySqlConnection);
