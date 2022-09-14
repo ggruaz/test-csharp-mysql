@@ -14,8 +14,8 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         //variable de connection à la base mySQL
-        MySqlConnection mySqlConnectionSrv = new MySqlConnection(@"server=localhost; uid=root; pwd=root;");
-        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=ggz; uid=root; pwd=root;");
+        MySqlConnection mySqlConnectionSrv = new MySqlConnection(@"server=localhost; user=root; pwd=root;");
+        MySqlConnection mySqlConnection = new MySqlConnection(@"server=localhost; database=db_test; user=root; pwd=root;");
 
         public Form1()
         {
@@ -25,11 +25,11 @@ namespace WindowsFormsApp1
         private void btnStart_Click(object sender, EventArgs e)
         {
             //déclarations des commandes
-            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS ggz", mySqlConnectionSrv);
-            MySqlCommand select = new MySqlCommand("SELECT * FROM tableggz WHERE id=1", mySqlConnection);
-            MySqlCommand insert = new MySqlCommand("INSERT INTO tableggz (id, password) values (1, '.Etml-')", mySqlConnection);
-            MySqlCommand create = new MySqlCommand("CREATE TABLE IF NOT EXISTS tableggz(id int, password text)", mySqlConnection);
-            MySqlCommand update = new MySqlCommand("UPDATE tableggz SET password='.Etml-44' WHERE id=1", mySqlConnection);
+            MySqlCommand createdb = new MySqlCommand("CREATE DATABASE IF NOT EXISTS db_test", mySqlConnectionSrv);
+            MySqlCommand select = new MySqlCommand("SELECT * FROM t_table WHERE idTable=1", mySqlConnection);
+            MySqlCommand insert = new MySqlCommand("INSERT INTO t_table (idTable, tabColonne) values (1, '.Etml-')", mySqlConnection);
+            MySqlCommand create = new MySqlCommand("CREATE TABLE IF NOT EXISTS t_table(idTable int, tabColonne text)", mySqlConnection);
+            MySqlCommand update = new MySqlCommand("UPDATE t_table SET tabColonne='.Etml-44' WHERE idTable=1", mySqlConnection);
 
             //se connecte au serveur
             mySqlConnectionSrv.Open();
@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
             while (reader.Read())
             {
                 //met à jours l'affichage
-                lblQuery.Text = "Contenu de la requête: " + Convert.ToString(reader["password"]);
+                lblQuery.Text = "Contenu de la requête: " + Convert.ToString(reader["tabColonne"]);
             }
 
             mySqlConnection.Close();
